@@ -71,6 +71,14 @@ class _MyHomePageState extends State<MyHomePage> {
             textAvecStyle(maMusicActuelle.titre, 1.5),
             textAvecStyle(maMusicActuelle.artiste, 1.0),
             new Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                bouton(Icons.fast_rewind, 30.0, ActionMusic.rewind),
+                bouton(Icons.play_arrow, 45.0, ActionMusic.play),
+                bouton(Icons.fast_forward, 30.0, ActionMusic.forward)
+              ],
+            ),
+            new Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 textAvecStyle('0:0', 0.8),
@@ -81,6 +89,31 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),// This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  IconButton bouton(IconData icone, double taille, ActionMusic action) {
+    return new IconButton(
+      iconSize: taille,
+        color: Colors.white,
+        icon: new Icon(icone),
+        onPressed: () {
+          switch (action) {
+            case ActionMusic.play:
+              print('Play');
+              break;
+            case ActionMusic.pause:
+              print('Pause');
+              break;
+            case ActionMusic.forward:
+              print('Forward');
+              break;
+            case ActionMusic.rewind:
+              print('Rewind');
+              break;
+          }
+        }
+        );
+
   }
 
   Text textAvecStyle(String data, double scale) {
@@ -96,6 +129,13 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+}
+
+enum ActionMusic {
+  play,
+  pause,
+  rewind,
+  forward
 }
 
 
